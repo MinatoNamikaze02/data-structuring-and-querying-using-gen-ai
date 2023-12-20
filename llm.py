@@ -1,4 +1,5 @@
 import os
+import random
 
 import openai
 import requests
@@ -12,6 +13,7 @@ load_dotenv()
 # Function to interact with OpenAI's GPT-4
 def query_gpt4(prompt, tokenCount, model_name, data, returnNotes):
     openai.api_key = os.getenv("OPEN_AI_KEY")
+    random_temperature = random.uniform(0, 1)
     try:
         if returnNotes:
             custom_function = custom_functions.custom_function_all(prompt)
@@ -28,7 +30,7 @@ def query_gpt4(prompt, tokenCount, model_name, data, returnNotes):
             functions=custom_function,
             function_call="auto",
             max_tokens=tokenCount,
-            temperature=0.5,
+            temperature=random_temperature,
             
         )
         return response.choices[0].message.function_call.arguments
@@ -38,6 +40,7 @@ def query_gpt4(prompt, tokenCount, model_name, data, returnNotes):
     
 def query_gpt4_non_function(prompt, tokenCount, model_name, data):
     openai.api_key = os.getenv("OPEN_AI_KEY")
+    random_temperature = random.uniform(0, 1)
     try:
         response = openai.chat.completions.create(
             model=model_name,
@@ -46,6 +49,7 @@ def query_gpt4_non_function(prompt, tokenCount, model_name, data):
                 {"role": "user", "content": data}
             ],
             max_tokens=tokenCount,
+            temperature=random_temperature,
         )
         return response.choices[0].message.content
     except Exception as e:
@@ -59,7 +63,7 @@ def query_longshot(prompt, tokenCount, model_name):
             prompt=prompt,
             model = model_name,
             max_tokens=tokenCount,
-            temperature=0.5,
+            temperature=0.7,
         )
         return output['output']['choices'][0]['text']
     except Exception as e:

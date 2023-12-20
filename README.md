@@ -17,13 +17,21 @@ pip install -r requirements.txt
 
 ### Usage
 
-To run the code, run the following command:
+To start off, run
+
+```bash
+python utils.py
+```
+This scrapes the data, uses LLMs to format the data to a pydantic object and is dumped to json which is later used to query.
+1. Uses the Mistral LLM to get a summary of the table element from the wikipedia page.
+2. This summarised data is sent over to the GPT model to categorize and structure the data into a JSON.
+3. This JSON is then converted dumped to films.json which is later used to query.
 
 ```bash
 python app.py
 ```
 
-Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the results.
+Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to use the interface to query the data.
 
 ## Explanation
 
@@ -34,7 +42,7 @@ Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the results.
 ### LLMs
 - Integrates OpenAI's python library for accessing GPT models.
 - For open-source LLMs, uses the Together AI python library to handle models like Mistral.
-- Implements a RAG system where GPT categorizes the scraped data into a structured format, which is then used to augment the query - - - processing by the same or a different GPT model.
+- Implements a RAG system where GPT categorizes the scraped data into a structured format, which is then used to augment the query processing by the same or a different GPT model.
 
 #### Function Calling
 - Users interacting with the interface can choose if function calling can be used. 
