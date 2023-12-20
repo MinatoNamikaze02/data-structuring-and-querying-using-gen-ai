@@ -1,8 +1,8 @@
-## Generative AI Integration for LongShot AI assessment
+# Generative AI Integration for LongShot AI assessment
 
 This repository contains the code for the LongShot AI assessment. The code is written in Python 3. 
 
-## Overview
+### Overview
 This is a simple app that has integrated the scraping of this [page](https://en.wikipedia.org/wiki/List_of_2023_box_office_number-one_films_in_the_United_States) to the subsequent usage of its data through LLM APIs to filter based on query inputs.
 
 ### Installation
