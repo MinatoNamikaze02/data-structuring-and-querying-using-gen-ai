@@ -60,8 +60,8 @@ Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to use the interface
 - Flask api hosts the frontend and communicates with the LLM API and returns a Jsonified response which is rendered in the frontend.
 - RAG Integration: The application first uses a GPT model to categorize and structure the scraped data. When a user query is received, this structured data is used to augment the query processing, enabling more contextually rich and accurate responses.
 <br />
-<img width="883" alt="Screenshot 2023-12-20 at 11 14 08 PM" src="https://github.com/MinatoNamikaze02/generative_ai/assets/85065053/63c4f47b-d9e9-49cd-9feb-a219e57d3f18">
 
+<img width="872" alt="Screenshot 2023-12-20 at 11 20 05 PM" src="https://github.com/MinatoNamikaze02/generative_ai/assets/85065053/26b9fa56-6633-4b30-979e-5c4bcbd58611">
 
 ## Final Notes
 - Open AI has a max token count which restricted some functionalities.
