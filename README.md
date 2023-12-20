@@ -31,7 +31,7 @@ Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the results.
 
 ### LLMs
 - Used the openai python library to create and handle the llms access for GPTs
-- For other Open Source LLMs, used the together AI to handle Mistral LLMs or any other open source LLMs.
+- For other Open Source LLMs, used the together AI python library to handle Mistral LLMs or any other open source LLMs.
 
 ## How it works
 - Flask api hosts the frontend and communicates with the LLM API and returns a Jsonified response which is rendered in the frontend.
