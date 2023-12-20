@@ -20,7 +20,7 @@ pip install -r requirements.txt
 To start off, run
 
 ```bash
-python utils.py
+python formatting.py
 ```
 This scrapes the data, uses LLMs to format the data to a pydantic object and is dumped to json which is later used to query.
 1. Uses the Mistral LLM to get a summary of the table element from the wikipedia page.
