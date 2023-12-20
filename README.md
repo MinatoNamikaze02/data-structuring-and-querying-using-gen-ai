@@ -22,3 +22,20 @@ python app.py
 ```
 
 Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to see the results.
+
+## Explanation
+
+### Scraper
+- Used beautiful soup to parse, scrape and format the data.
+- Used pydantic to handle objects. The sample of the data is dumped at films.json.
+
+### LLMs
+- Used the openai python library to create and handle the llms access for GPTs
+- For other Open Source LLMs, used the together AI python library to handle Mistral LLMs or any other open source LLMs.
+
+#### Function Calling
+- Users interacting with the interface can choose if function calling can be used. 
+- function calling for OpenAI is another way of prompting the LLMs.
+
+## How it works
+- Flask api hosts the frontend and communicates with the LLM API and returns a Jsonified response which is rendered in the frontend.
