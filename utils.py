@@ -3,13 +3,14 @@ from bs4 import BeautifulSoup
 
 from models import Film, FilmRecord
 
+from llm import query_gpt4_non_function
+
 def fetch_html(url):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
     table = soup.find('table', attrs={'class': 'wikitable sortable'})
 
     rows = table.find_all('tr')
-
     films_dict = {}
     skip = 0
     current_title = None
@@ -36,13 +37,19 @@ def fetch_html(url):
         else:
             films_dict[current_title] = Film(title=current_title, records=[record])
 
+    query = """
+    Your role is to generate a simplified document which contains the following information comma separated:
+    {title of the film}, {list of unique months for that title}, {cumulative box_office_collection}
+    minimise the tokens used in the response
+    """
     films = list(films_dict.values())
-    return films
+    # split films into 2
+    films_1, films_2 = films[:len(films)//2], films[len(films)//2:]
 
-# if __name__ == '__main__':
-#     films = fetch_html('https://en.wikipedia.org/wiki/List_of_2023_box_office_number-one_films_in_the_United_States')
-#     json_data = [film.model_dump() for film in films]
-#     import json
-#     print(json_data)
-#     with open('films.json', 'w') as f:
-#         json.dump(json_data, f)
+    data1 = query_gpt4_non_function(query, 400, "gpt-3.5-turbo", str([film.dict() for film in films_1]))
+    data2 = query_gpt4_non_function(query, 400, "gpt-3.5-turbo", str([film.dict() for film in films_2]))
+    data = data1 + data2    
+    print(data)
+
+    return data
+

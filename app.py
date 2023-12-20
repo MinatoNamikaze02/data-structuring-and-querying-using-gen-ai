@@ -16,7 +16,7 @@ def index():
 
 @app.route('/query', methods=['POST'])
 def query_llm():
-    data: models.Film = utils.fetch_html(os.getenv("url"))
+    data = utils.fetch_html(os.getenv("url"))
     prompt = request.json['prompt']
     model = request.json['model']
     tokenCount = int(request.json['tokenCount'])
@@ -27,9 +27,9 @@ def query_llm():
     prompt =f"""
             Please extract the following information based on the constraints from the given text and return it as a JSON object:
 
-            {prompt}
+            {prompt}    
         """
-    data = str([film.dict() for film in data])
+    # data = str([film.dict() for film in data])
     if functionCalling:
         if model == "gpt":
             print("here")
@@ -38,15 +38,15 @@ def query_llm():
             response = "Invalid model"
 
         return jsonify(response)
-    else:
-        prompt += f"""\n
-            The data for the above query is given below:
-            {data}
-        """
+    # else:
+    #     prompt += f"""\n
+    #         The data for the above query is given below:
+    #         {data}
+    #     """
     
     # print(prompt)
     if model == "gpt":
-        response = query_gpt4_non_function(prompt, tokenCount, modelName)
+        response = query_gpt4_non_function(prompt, tokenCount, modelName, data)
     elif model == "mistral":
         response = query_longshot(prompt, tokenCount, modelName)
     else:

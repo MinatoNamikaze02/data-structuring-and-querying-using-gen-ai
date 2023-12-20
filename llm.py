@@ -36,14 +36,14 @@ def query_gpt4(prompt, tokenCount, model_name, data, returnNotes):
     except Exception as e:
         return "Error" + str(e)
     
-def query_gpt4_non_function(prompt, tokenCount, model_name):
+def query_gpt4_non_function(prompt, tokenCount, model_name, data):
     openai.api_key = os.getenv("OPEN_AI_KEY")
     try:
         response = openai.chat.completions.create(
             model=model_name,
             messages=[
-                {"role": "system", "content": "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. The assistant only responds with JSON output."},
-                {"role": "user", "content": prompt}
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": data}
             ],
             max_tokens=tokenCount,
         )
