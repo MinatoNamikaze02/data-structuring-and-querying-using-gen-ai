@@ -40,6 +40,7 @@ python app.py
 ```
 
 Then go to [http://127.0.0.1:5000/](http://127.0.0.1:5000/) to use the interface to query the data.
+This part works with any LLM inputted in the interface. However, the initial schema generation part works with specific LLMs due to the token limits.
 
 ## Explanation
 
