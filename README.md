@@ -66,4 +66,4 @@ This part works with any LLM inputted in the interface. However, the initial sch
 
 ## Final Notes
 - Open AI has a max token count which restricted some functionalities.
-- The parsing of scraped data through beautifulsoup was removed. Everything now works through LLMs alone. 
+
