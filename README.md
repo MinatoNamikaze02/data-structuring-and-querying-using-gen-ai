@@ -1,4 +1,4 @@
-# Generative AI Integration for LongShot AI assessment
+# Data aggregation using GenAI
 
 This repository contains the Python 3 code for the LongShot AI assessment, showcasing the integration of Generative AI with a Retrieval Augmented Generation (RAG) model. The application scrapes data from a specific Wikipedia page, processes it through a RAG system, and uses Large Language Models (LLMs) to generate informative responses based on user queries.
 
